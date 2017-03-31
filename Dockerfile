@@ -57,15 +57,15 @@ RUN set -ex \
     && pip install pyasn1 \
     && pip install airflow[crypto,celery,postgres,hive,hdfs,jdbc]==$AIRFLOW_VERSION \
     && pip install celery[redis]==3.1.17 \
-    && apt-get remove --purge -yqq $buildDeps \
-    && apt-get clean \
-    && rm -rf \
-        /var/lib/apt/lists/* \
-        /tmp/* \
-        /var/tmp/* \
-        /usr/share/man \
-        /usr/share/doc \
-        /usr/share/doc-base
+#    && apt-get remove --purge -yqq $buildDeps \
+#    && apt-get clean \
+#RUN rm -rf \
+#        /var/lib/apt/lists/* \
+#        /tmp/* \
+#        /var/tmp/* \
+#        /usr/share/man \
+#        /usr/share/doc \
+#        /usr/share/doc-base
 
 COPY script/entrypoint.sh /entrypoint.sh
 COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg

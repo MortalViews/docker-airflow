@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
     postgres:
         image: postgres:9.6
@@ -8,15 +8,18 @@ services:
             - POSTGRES_DB=airflow
 
     webserver:
-        image: puckel/docker-airflow:1.8.0
+        image: puckel/docker-airflow-dev
         restart: always
         depends_on:
             - postgres
         environment:
-            - LOAD_EX=y
+            - LOAD_EX=n
             - EXECUTOR=Local
-        # volumes:
-            # - ~/github/docker-airflow/dags:/usr/local/airflow/dags
+        volumes:
+            - ~/airflow/dags/:/usr/local/airflow/dags
+            - ~/project/sp3-platform-analytics/machine-learning/mlpipeline/:/usr/local/mlpipeline
+            - ~/gitclones/incubator-airflow/:/opt/airflow
+            - ~/project/sp3-platform-analytics/machine-learning/plugins:/usr/local/airflow/plugins
         ports:
             - "8080:8080"
         command: webserver

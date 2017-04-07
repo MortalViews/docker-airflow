@@ -16,7 +16,7 @@ TRY_LOOP="20"
 : ${FERNET_KEY:=$(python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)")}
 
 
-$(which pip) install --user -e /opt/airflow[crypto,celery,postgres]
+$(which pip) install --user  airflow[crypto,celery,postgres]
 $(which pip) install --user -e /usr/local/mlpipeline/
 echo "PATH=\$PATH:~/.local/bin" >> ~/.bashrc
 . ~/.bashrc
@@ -40,8 +40,8 @@ if [ "$1" = "webserver" ] || [ "$1" = "worker" ] || [ "$1" = "scheduler" ] ; the
   done
 fi
 
-#$CMD initdb
-#exec $CMD webserver &
-#exec $CMD scheduler
+$CMD initdb
+exec $CMD webserver &
+exec $CMD scheduler
 #
-while true; do sleep 1000; done
+#while true; do sleep 1000; done

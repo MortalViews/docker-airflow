@@ -18,7 +18,6 @@ services:
         volumes:
             - ~/airflow/dags/:/usr/local/airflow/dags
             - ~/project/sp3-platform-analytics/machine-learning/mlpipeline/:/usr/local/mlpipeline
-            - ~/gitclones/incubator-airflow/:/opt/airflow
             - ~/project/sp3-platform-analytics/machine-learning/plugins:/usr/local/airflow/plugins
         ports:
             - "8080:8080"

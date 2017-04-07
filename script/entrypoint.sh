@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 AIRFLOW_VERSION=1.8.0
 AIRFLOW_HOME="/usr/local/airflow"
-CMD="~/.local/bin/airflow"
+CMD="/usr/local/airflow/.local/bin/airflow"
 TRY_LOOP="20"
 
 : ${REDIS_HOST:="redis"}
@@ -40,8 +40,8 @@ if [ "$1" = "webserver" ] || [ "$1" = "worker" ] || [ "$1" = "scheduler" ] ; the
   done
 fi
 
-$CMD initdb
-exec $CMD webserver &
-exec $CMD scheduler
+#$CMD initdb
+#exec $CMD webserver &
+#exec $CMD scheduler
 #
-#while true; do sleep 1000; done
+while true; do sleep 1000; done

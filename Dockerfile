@@ -137,6 +137,11 @@ RUN pip install alembic==0.8.10\
 				Werkzeug==0.12.1\
 				WTForms==2.1\
 				zope.deprecation==4.2.0
+RUN pip install redis 
+RUN pip install future
+RUN pip install flask_restplus
+RUN pip install flask-WTF==0.14
+RUN pip install flask_mongoengine
 
 COPY script/entrypoint.sh /entrypoint.sh
 COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg

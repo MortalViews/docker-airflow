@@ -6,9 +6,10 @@ services:
             - POSTGRES_USER=airflow
             - POSTGRES_PASSWORD=airflow
             - POSTGRES_DB=airflow
-
+        volumes:
+            - ~/airflow/:/usr/local/airflow/dags
     webserver:
-        image: puckel/docker-airflow-dev
+        image: puckel/docker-airflow-dev-r
         restart: always
         depends_on:
             - postgres
@@ -17,8 +18,8 @@ services:
             - EXECUTOR=Local
         volumes:
             - ~/airflow/dags/:/usr/local/airflow/dags
-            - ~/project/sp3-platform-analytics/machine-learning/mlpipeline/:/usr/local/mlpipeline
-            - ~/project/sp3-platform-analytics/machine-learning/plugins:/usr/local/airflow/plugins
+            - ~/project/sp3-platform-analytics/machine-learning/mlmanager/:/usr/local/mlmanager
+            - ~/project/sp3-platform-analytics/machine-learning/mlmanager/plugins:/usr/local/airflow/plugins
         ports:
             - "8080:8080"
         command: webserver
